@@ -1,0 +1,58 @@
+1) First of all init npm
+
+2) The project structure should go something like
+    proj/src/(all my react coding goes to this folder. app.js should be the base file)
+    proj/src/styles (some styles. it can be css or sass. For working with styles we will have to use style-loader)
+
+    proj/public/index.html
+    proj/public/bundle.js (after configuring webpack, we will get bundle.js and include it in html file)
+    proj/public/style.css (after compiling styles with the help of webpack, we will get file. Include it in html file )
+    proj/public/scripts (some additional scripts)
+
+
+========================================================================================================================
+======================================================= BABEL ==========================================================
+========================================================================================================================
+
+3) Then install babel and its presets -> babel @babel/cli @babel/core @babel/preset-env @babel/preset-react
+    If you want to work with webpack, than there is no need to install -> babel @babel/cli
+
+4) Make .babelrc and configure it. {"presets": ["@babel/preset-env", "@babel/preset-react"], "plugins": []}
+
+5) As babel cannot work with more than 1 file, so we will have to include react and react-dom cdn link in html file.
+    If we don't include cdn links than JSX will not compile
+
+6) Now edit src/app.js as a stand alone single file. You can also write JSX and simple JavaScript
+
+7) Use the following command to compile js
+    "babel src/app.js --watch --out-file public/babel_compiled.js"
+
+8) We can also use live server to automatically load the html file to the web without refreshing
+
+
+========================================================================================================================
+======================================================= WEBPACK ========================================================
+========================================================================================================================
+
+9) Install the following modules -> webpack webpack-cli webpack-dev-server
+
+10) Make a simple webpack.config.js file to edit it.
+
+11) If you want to see the structure of this file see the file
+
+12) To compile JSX or react code to simple JavaScript, you are gonna need babel-loader. So install it. Also you need to
+    install react and react dom. To configure babel-loader for webpack, see webpack.config.js file. And you can also
+    remove cdn links from index.html file
+    Installing -> babel-loader react react-dom.
+
+13) Compile the javascript with the help of the following command and don't forget to include bundle.js file in html
+    "webpack serve" which is the command for the webpack to use Webpack-dev-server to serve up files
+
+14) Webpack Dev Server won't ever put the bundle on disk. It's not supposed to. It puts the server in the memory. Use
+    the normal webpack production build to accomplish this with the help of the following command
+    "webpack build --mode production"
+
+15) For css, use style-loader -> ^2.0.0 with css-loader -> ^4.3.0.
+    If you are working with sass then also install node-sass -> ^4.8.3 and sass-loader -> ^11.0.1
+
+16) Finally for images, use the file-loader. Installing -> file-loader
